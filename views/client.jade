@@ -1,0 +1,15 @@
+!!!
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.client.css')
+    script(src='/socket.io/socket.io.js')
+    script(src='/javascripts/sb.js?v2')
+    script(src='/javascripts/player.js')
+    script(src='/javascripts/client.js')
+  body
+    h1= title
+    p Welcome to #{title}
+    div#stage
+      div#popup
+        p connection lost
