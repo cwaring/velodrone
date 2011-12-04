@@ -3,7 +3,7 @@ var socket
   , players
   , connectTimeout
   , ready;
-  
+
 ready = false;
 
 if (window.DeviceOrientationEvent) {

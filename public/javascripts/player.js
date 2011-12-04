@@ -40,7 +40,7 @@ Player.prototype = {
 
     //console.log(ay);
 
-    that.update(0, ay);
+    that.update(ax, ay);
   },
 
   update: function (x, y) {
@@ -55,14 +55,17 @@ Player.prototype = {
     if(new_vol < 0) {
       new_vol = 0;
     }
-    var new_pan = (x / 11) * 100;
+    var new_pan = (x / 30) * 200;
+    new_pan = new_pan > 100 ? 100 : new_pan;
+    new_pan = new_pan < -100 ? -100 : new_pan;
+    new_pan = parseInt(new_pan);
+    new_vol = parseInt(new_vol);
 
     if(that.server && typeof(that.sound.track) != "undefined") {
       //console.log(new_vol);
       that.sound.setVolume(new_vol);
-      //that.sound.setPan(new_pan);
-      //this.cube.changeSize(new_vol / 100 * 2);
-      that.bar.changeSize(new_vol);
+      that.sound.setPan(new_pan);
+      this.cube.changeSize(new_vol / 100 * 2);
     }
   },
 

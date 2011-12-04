@@ -26,9 +26,8 @@ function moveMe () {
 }
 
 window.addEventListener('deviceorientation', function (e) {
-	ax = e.alpha * sensitivity;
+	ax = e.gamma * sensitivity;
 	ay = e.beta * sensitivity;
-  //console.log("TEST E " + e.accelerationIncludingGravity.z);
 }, false);
 
 window.addEventListener('load', function () {

@@ -8,7 +8,8 @@ var express = require('express')
   , io = require('socket.io')
   , isHost
 	, players = {}
-  , host_connected;
+  , host_connected
+  , clients = 0;
 
 var app = module.exports = express.createServer(),
     socket = io.listen(app);
@@ -61,14 +62,18 @@ socket.sockets.on('connection', function (client) {
 
   client.on('message', function (message) {
 
+    console.log(clients);
     switch(message.type) {
       case 'connect_client':
-        
+
+        if(clients > 16) return;
+
         if(!host_connected) {
           delete players[client.id];
 
           // Broadcast the logged out user's id
-          client.json.broadcast.send({ type: 'leave', id: client.id });  
+          client.json.broadcast.send({ type: 'leave', id: client.id });
+          clients = 0;
         }
 
         isHost = false;
@@ -79,7 +84,7 @@ socket.sockets.on('connection', function (client) {
 
         // Broadcast the new user to all players
         client.json.broadcast.send({type: 'new', id: client.id});
-
+        clients++;
         break;
 
         case 'connect_host':
@@ -103,9 +108,9 @@ socket.sockets.on('connection', function (client) {
   client.on('disconnect', function () {
     // Remove the user from the list of players
     delete players[this.id];
-
     // Broadcast the logged out user's id
     client.json.broadcast.send({ type: 'leave', id: this.id });
+    if(clients >= 2) clients = clients - 2;
   });
 
 });

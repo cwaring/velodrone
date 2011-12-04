@@ -52,6 +52,9 @@ var Sound = function(id, url) {
     this.track.setVolume(vol);
   };
 
+   this.setPan = function(pan) {
+       this.track.setPan(pan);
+     };
 };
 
 function soundInit(id, url) {

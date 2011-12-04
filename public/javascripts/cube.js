@@ -43,8 +43,8 @@
           }
 
           this.cube = new THREE.Mesh( new THREE.CubeGeometry( 200, 200, 200, 1, 1, 1, materials ), new THREE.MeshFaceMaterial() );
-          this.cube.position.y = Math.random() * this.height;
-          this.cube.position.x = Math.random() * this.width;
+          this.cube.position.y = Math.random() * this.height - (this.height / 2);
+          this.cube.position.x = Math.random() * this.width - (this.width / 2 );
           this.cube.overdraw = true;
           scene.add( this.cube );
 

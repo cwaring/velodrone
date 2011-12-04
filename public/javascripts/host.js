@@ -5,7 +5,8 @@ var socket
   , counter
   , cubes = []
   , players = []
-  , player_ids = [];
+  , player_ids = []
+  , interval = false;
 
 counter = 0;
 
@@ -35,6 +36,9 @@ function socketInit() {
           player_ids[message.id] = true;
           players.push(new Player(message.id, 'opponent', 0, 0, true));
         }
+        if(!interval) {
+          interval = setInterval(modCam, 10);
+        };
         break;
       case 'leave':
         // Player disconnected
@@ -46,6 +50,22 @@ function socketInit() {
   socket.on('disconnect', function () {
     document.getElementById('popup').style.display = 'block';
   });
+}
+
+var radius = 600;
+var theta = 0;
+
+function modCam() {
+
+  theta += 0.2;
+
+  camera.position.x = radius * Math.sin( theta * Math.PI / 360 );
+  camera.position.y = radius * Math.sin( theta * Math.PI / 360 );
+  camera.position.z = radius * Math.cos( theta * Math.PI / 360 );
+  camera.lookAt( scene.position );
+
+  renderer.render( scene, camera );
+
 }
 
 function updatePosition (data) {
