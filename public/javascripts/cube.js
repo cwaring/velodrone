@@ -8,7 +8,7 @@
       $(document).ready(function() {
         scene = new THREE.Scene();
 
-        camera = new THREE.PerspectiveCamera( 70, window.innerWidth /  window.innerHeight, 1, 1000 );
+        camera = new THREE.PerspectiveCamera( 100, window.innerWidth /  window.innerHeight, 1, 1000 );
         camera.position.y = 150;
         camera.position.z = 900;
         scene.add( camera );
@@ -43,8 +43,8 @@
           }
 
           this.cube = new THREE.Mesh( new THREE.CubeGeometry( 200, 200, 200, 1, 1, 1, materials ), new THREE.MeshFaceMaterial() );
-          this.cube.position.y = Math.random() * this.height - (this.height / 2);
-          this.cube.position.x = Math.random() * this.width - (this.width / 2 );
+          this.cube.position.y = Math.random() * this.height - (this.height / 2) - 100;
+          this.cube.position.x = Math.random() * this.width - (this.width / 2 ) - 100;
           this.cube.overdraw = true;
           scene.add( this.cube );
 

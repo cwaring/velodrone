@@ -25,10 +25,11 @@ tracks.push("/music/ooo/10A.mp3");
 tracks.push("/music/ooo/12B.mp3");
 tracks.push("/music/ooo/13C.mp3"); */
 
-tracks.push("/music/buzzing/buzzing%201%20Audio.mp3");
-tracks.push("/music/buzzing/buzzing%202%20Audio.mp3");
-tracks.push("/music/buzzing/buzzing%203%20Audio.mp3");
-tracks.push("/music/buzzing/buzzing%204%20Audio.mp3");
-tracks.push("/music/buzzing/buzzing%205%20Audio.mp3");
-tracks.push("/music/buzzing/buzzing%206%20Audio.mp3");
-tracks.push("/music/buzzing/buzzing%207%20Audio.mp3");
+tracks.push("/music/buzzing2/1.mp3");
+tracks.push("/music/buzzing2/2.mp3");
+tracks.push("/music/buzzing2/3.mp3");
+tracks.push("/music/buzzing2/4.mp3");
+tracks.push("/music/buzzing2/5.mp3");
+tracks.push("/music/buzzing2/6.mp3");
+tracks.push("/music/buzzing2/7.mp3");
+tracks.push("/music/buzzing2/8.mp3");

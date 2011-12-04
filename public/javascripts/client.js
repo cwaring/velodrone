@@ -7,9 +7,9 @@ var socket
 ready = false;
 
 if (window.DeviceOrientationEvent) {
-  console.log("DeviceOrientation is supported");
+  //console.log("DeviceOrientation is supported");
 } else {
-  console.log("GO AWAY YOU CUNT");
+  //console.log("");
 }
 
 function socketInit() {
@@ -22,6 +22,9 @@ function socketInit() {
     me = new Player(sessionid, 'player');
     ready = true;
     mainLoop = setInterval(moveMe, 10);
+    $(document).ready(function() {
+      $("div#popup").show();
+    });
   });
 
   socket.on('disconnect', function () {
@@ -32,18 +35,11 @@ function socketInit() {
 }
 
 function sendPosition () {
-    if (ready) {
+  if (ready) {
     var pos = buffer.length ? buffer[0] : { x:me.x, y:me.y };
     buffer.shift();
     socket.emit('message', { type:'position', id:me.id, x:pos.x, y:pos.y });
-    $(document).ready(function() {
-      //$(".bg-colors-overlay").css("opacity", (pos.y/660));
-    });
-    }
+  }
 }
 
 socketInit();
-
-$(document).ready(function() {
-  //$(".bg-colors").addClass("bg-color" + (Math.ceil(Math.random()* 5)+1%5));
-});

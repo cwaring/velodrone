@@ -2,6 +2,7 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 	padding: 0;
 	margin: 0;
+  background-color: #000
 }
 
 a {
@@ -20,6 +21,15 @@ a {
 html {
 	width: 100%;
 	height: 100%;
+}
+
+div#popup {
+  display: none;
+  color: #fff;
+  width: 220px;
+  height: 100px;
+  margin: auto;
+  font-size: 2.5em;
 }
 
 .bg-colors {
@@ -55,8 +65,4 @@ html {
 
 .bg-color5 {
 	background-color: #EDC951;
-}
-
-body p {
-	color: transparent;
 }

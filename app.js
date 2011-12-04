@@ -62,7 +62,6 @@ socket.sockets.on('connection', function (client) {
 
   client.on('message', function (message) {
 
-    console.log(clients);
     switch(message.type) {
       case 'connect_client':
 
