@@ -8,7 +8,7 @@
       $(document).ready(function() {
         scene = new THREE.Scene();
 
-        camera = new THREE.PerspectiveCamera( 70, 1, 1, 1000 );
+        camera = new THREE.PerspectiveCamera( 70, window.innerWidth /  window.innerHeight, 1, 1000 );
         camera.position.y = 150;
         camera.position.z = 900;
         scene.add( camera );
@@ -16,16 +16,16 @@
         container.id = "cube-scene";
         document.body.appendChild( container );
         renderer = new THREE.CanvasRenderer();
-        renderer.setSize( 600, 600 );
+        renderer.setSize( window.innerWidth, window.innerHeight );
         container.appendChild( renderer.domElement );
       });
 
-      Cube = function(player_id, width, height) {
+      Cube = function(player_id, owidth, oheight) {
         this.cube;
         this.plane;
         this.player_id = player_id;
-        this.width = width;
-        this.height = height;
+        this.width = window.innerWidth;
+        this.height = window.innerHeight;
         this.renderer;
         _this = {};
         that = this;
@@ -43,8 +43,8 @@
           }
 
           this.cube = new THREE.Mesh( new THREE.CubeGeometry( 200, 200, 200, 1, 1, 1, materials ), new THREE.MeshFaceMaterial() );
-          this.cube.position.y = Math.random() * 600;
-          this.cube.position.x = Math.random() * 600;
+          this.cube.position.y = Math.random() * this.height;
+          this.cube.position.x = Math.random() * this.width;
           this.cube.overdraw = true;
           scene.add( this.cube );
 
@@ -83,5 +83,9 @@
           this.cube.rotation.z = Math.sin( new Date().getTime() * 0.0002 ) * 0.5;
           renderer.render( scene, camera );
 
+        }
+
+        this.destroy = function() {
+          scene.remove(this.cube);
         }
       }

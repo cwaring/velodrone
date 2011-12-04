@@ -63,6 +63,7 @@ Player.prototype = {
     if(this.server) {
       //console.dir(this.sound);
       this.sound.track.destruct();
+      this.cube.destroy();
       //that.cube.remove();
     } else {
       stage.removeChild(this.ball);
