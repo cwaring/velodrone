@@ -13,6 +13,7 @@ soundManager.url = '/javascripts/soundmanager/swf/'; // directory where SM2 .SWF
 
 // disable debug mode after development/testing..
 soundManager.debugMode = false;
+soundManager.preferFlash = false;
 
 
 // The basics: onready() callback
@@ -42,7 +43,7 @@ var Sound = function(id, url) {
     });
 
     this.track.load({volume:this.volume,loops:this.loops}); // load the sound ahead of time
-  
+
   };
 
   this.setVolume = function(vol) {
@@ -53,7 +54,7 @@ var Sound = function(id, url) {
 
 function soundInit(id, url) {
   var thisSound = new Sound(id, url);
-  
+
   thisSound.loadAndTrigger();
   mySounds.push(thisSound);
   myIDMap.push('soundID'+mySoundCount);
@@ -76,13 +77,13 @@ function soundStopAll() {
 
 function getPosition(arrayName, arrayItem)
 {
-  for(var i=0;i<arrayName.length;i++){ 
+  for(var i=0;i<arrayName.length;i++){
    if(arrayName[i]==arrayItem)
   return i;
   }
 };
-  
-function soundStopByID(id) 
+
+function soundStopByID(id)
 {
   j = getPosition(myIDMap, id);
   mySounds[j].track.destruct();

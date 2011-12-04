@@ -1,8 +1,8 @@
 function Player (id, className, x, y, hide_div) {
   var that = this,
-  
+
   div = document.createElement('div');
-  
+
   div.id = 'b' + id;
   div.className = 'ball ' + className;
   this.server = hide_div || false;
@@ -10,17 +10,17 @@ function Player (id, className, x, y, hide_div) {
   if(!this.server) {
     stage.appendChild(div);
   }
-  
+
   that.id = id;
   that.ball = div;
-  
+
   x = x || 0;
   y = y || 0;
   that.update(x, y);
-  
+
   if(this.server) {
-    this.cube = cubes.push(createCube(id, 200, 200));
-    animate();
+    //this.cube = cubes.push(createCube(id, 200, 200));
+    //animate();
     console.log(mySoundCount);
     this.sound = soundInit('soundID' + mySoundCount, tracks[(mySoundCount % tracks.length)]);
   }
@@ -32,7 +32,7 @@ Player.prototype = {
   cube: {},
   server: false,
   sound: {},
-  
+
   move: function () {
     var that = this, x, y;
 
@@ -62,23 +62,23 @@ Player.prototype = {
 
     that.update(x, y);
   },
-  
+
   update: function (x, y) {
     var that = this;
     that.x = x;
     that.y = y;
     //that.ball.style.webkitTransform = 'translate3d(' + that.x + 'px,'+ that.y +'px,0)';
-    
+
    //console.dir(this.sound);
-    
+
     var new_vol = (y / 660) * 100;
-    
+
     if(that.server && typeof(that.sound.track) != "undefined") {
       //console.log(new_vol);
       that.sound.setVolume(new_vol);
     }
   },
-  
+
   remove: function () {
     if(this.server) {
       //console.dir(this.sound);

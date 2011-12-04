@@ -5,7 +5,7 @@ document.addEventListener('touchmove', function (e) { e.preventDefault(); }, fal
 var stage, stageW, stageH,
 	friction = 0.98,
 	bounce = -0.75,
-	sensitivity = 0.2,
+	sensitivity = 0.8,
 	diameter = 40,
 	ax = ay = 0,
 	mainLoop,
@@ -21,7 +21,7 @@ function moveMe () {
 	buffer[buffer.length] = { x: me.x, y: me.y };
 
 	if (buffer.length > 10) buffer.shift();
-  
+
 	sendPosition();
 }
 
@@ -37,7 +37,7 @@ window.addEventListener('load', function () {
 	stageH = stage.clientHeight;
 
 	var popup = document.getElementById('popup');
-	
+
 	/*if (!navigator.appVersion.match(/ipad/gi)) {
 		popup.innerHTML = 'Sorry, this app is for iPad only';
 		popup.style.display = 'block';
@@ -49,6 +49,6 @@ window.addEventListener('load', function () {
 		document.getElementById('popup').style.display = 'block';
 		return;
 	}*/
-	
+
 	socketInit();
 }, false);

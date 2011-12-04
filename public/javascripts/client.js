@@ -21,7 +21,7 @@ function socketInit() {
     sessionid = socket.socket.sessionid;
     me = new Player(sessionid, 'player');
     ready = true;
-    mainLoop = setInterval(moveMe, 50);
+    mainLoop = setInterval(moveMe, 10);
   });
 
   socket.on('disconnect', function () {
