@@ -1,5 +1,6 @@
 function Player (id, className, x, y, hide_div) {
-  var that = this,
+  that = this;
+  this.cube = {};
 
   div = document.createElement('div');
 
@@ -21,8 +22,7 @@ function Player (id, className, x, y, hide_div) {
   if(this.server) {
     this.cube = new Cube(id, 200, 200);
     this.cube.createCube();
-    window.setTimeout(this.cube.render, 1000 / 60 );
-    //this.cube.animate();
+    this.cube.animate();
     this.sound = soundInit('soundID' + mySoundCount, tracks[mySoundCount % tracks.length]);
   }
 }
