@@ -13,7 +13,7 @@
         this.scale.y=factor;
         this.scale.x=factor;
         this.scale.z=factor;
-        
+
         return true;
       }
 
@@ -29,10 +29,10 @@
         camera.position.y = 150;
         camera.position.z = 900;
         scene.add( camera );
-        
+
         width = width || window.innerWidth;
         height= height || window.innerHeight;
-        
+
 
         // Cube
 
@@ -60,7 +60,7 @@
         renderer.setSize( width, height );
 
         container.appendChild( renderer.domElement );
-        
+
         return cube;
       }
 
@@ -81,7 +81,7 @@
         cube.rotation.x = Math.sin( new Date().getTime() * 0.0007 ) * 0.5;
         cube.rotation.y = Math.sin( new Date().getTime() * 0.0003 ) * 0.5;
         cube.rotation.z = Math.sin( new Date().getTime() * 0.0002 ) * 0.5;
-        
+
         renderer.render( scene, camera );
 
       }

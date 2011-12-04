@@ -19,9 +19,8 @@ function Player (id, className, x, y, hide_div) {
   that.update(x, y);
 
   if(this.server) {
-    //this.cube = cubes.push(createCube(id, 200, 200));
-    //animate();
-    console.log(mySoundCount);
+    this.cube = new createCube(id, 200, 200);
+    animate();
     this.sound = soundInit('soundID' + mySoundCount, tracks[mySoundCount % tracks.length]);
   }
 }
@@ -76,6 +75,7 @@ Player.prototype = {
     if(that.server && typeof(that.sound.track) != "undefined") {
       //console.log(new_vol);
       that.sound.setVolume(new_vol);
+      this.cube.changeSize(new_vol / 100 * 2);
     }
   },
 

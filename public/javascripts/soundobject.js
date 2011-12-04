@@ -12,13 +12,14 @@ soundManager.url = '/javascripts/soundmanager/swf/'; // directory where SM2 .SWF
 */
 
 // disable debug mode after development/testing..
-soundManager.debugMode = false;
-soundManager.preferFlash = false;
-
 
 // The basics: onready() callback
+soundManager.debugMode = false;
+soundManager.preferFlash = false;
+soundManager.useHTML5Audio = true;
 
 //soundManager.onready(function(){
+
 
 var mySounds = new Array();
 var myIDMap = new Array();
@@ -26,19 +27,20 @@ var myIDMap = new Array();
 mySoundCount = 0;
 
 var Sound = function(id, url) {
-   this.id = id;
-   this.url = url;
-   this.loops = 500;
-   this.volume = 50;
-   this.track;
+  this.id = id;
+  this.url = url;
+  this.loops = 500;
+  this.volume = 50;
+  this.track;
 
   this.loadAndTrigger = function() {
     //var that = this;
     this.track = soundManager.createSound({
       id: this.id,
       url: this.url,
+      loops: 500,
       onload: function() {
-      this.play(); // and start playing after callback
+        this.play({loops:500}); // and start playing after callback
       },
     });
 
@@ -78,8 +80,8 @@ function soundStopAll() {
 function getPosition(arrayName, arrayItem)
 {
   for(var i=0;i<arrayName.length;i++){
-   if(arrayName[i]==arrayItem)
-  return i;
+    if(arrayName[i]==arrayItem)
+      return i;
   }
 };
 
@@ -100,5 +102,3 @@ function soundStop(id) {
     myIDMap.splice(i, 1);
   }
 */
-
-
