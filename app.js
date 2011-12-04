@@ -8,6 +8,7 @@ var express = require('express')
   , io = require('socket.io')
   , isHost
 	, players = {}
+  , host_connected;
 
 var app = module.exports = express.createServer(),
     socket = io.listen(app);
@@ -59,6 +60,14 @@ socket.sockets.on('connection', function (client) {
 
     switch(message.type) {
       case 'connect_client':
+        
+        if(!host_connected) {
+          delete players[client.id];
+
+          // Broadcast the logged out user's id
+          client.json.broadcast.send({ type: 'leave', id: client.id });  
+        }
+
         isHost = false;
         client.json.send({ type: 'playerslist', list: players });
 
@@ -73,6 +82,7 @@ socket.sockets.on('connection', function (client) {
         case 'connect_host':
 
         isHost = true;
+        host_connected = true;
         client.json.send({ type: 'playerslist', list: players });
 
         break;

@@ -5,9 +5,11 @@ html
     link(rel='stylesheet', href='/stylesheets/style.client.css')
     script(src='/socket.io/socket.io.js')
     script(src='/javascripts/sb.js?v2')
+    script(src='/javascripts/jquery-1.7.1.min.js')
     script(src='/javascripts/player.js')
     script(src='/javascripts/client.js')
-  body
+  body.bg-colors
+    div.bg-colors-overlay
     h1= title
     p Welcome to #{title}
     div#stage

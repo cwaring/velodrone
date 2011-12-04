@@ -22,7 +22,7 @@ function Player (id, className, x, y, hide_div) {
     this.cube = cubes.push(createCube(id, 200, 200));
     animate();
     console.log(mySoundCount);
-    this.sound = soundInit('soundID' + mySoundCount, tracks[0]);
+    this.sound = soundInit('soundID' + mySoundCount, tracks[(mySoundCount % tracks.length)]);
   }
 }
 

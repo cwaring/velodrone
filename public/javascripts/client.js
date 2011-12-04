@@ -3,9 +3,7 @@ var socket
   , players
   , connectTimeout
   , ready;
-
-counter = 0;
-
+  
 ready = false;
 
 if (window.DeviceOrientationEvent) {
@@ -36,7 +34,14 @@ function sendPosition () {
     var pos = buffer.length ? buffer[0] : { x:me.x, y:me.y };
     buffer.shift();
     socket.emit('message', { type:'position', id:me.id, x:pos.x, y:pos.y });
+    $(document).ready(function() {
+      $(".bg-colors-overlay").css("opacity", (pos.y/660));
+    });
     }
 }
 
 socketInit();
+
+$(document).ready(function() {
+  $(".bg-colors").addClass("bg-color" + (Math.ceil(Math.random()* 5)+1%5));
+});

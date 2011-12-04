@@ -1,6 +1,7 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 0;
+	margin: 0;
 }
 
 a {
@@ -13,42 +14,49 @@ a {
 	width:700px; height:700px;
 	margin-top:-350px; margin-left:-350px;
 	-webkit-border-radius:8px;
-	background:#fff;
 }
 
-#popup {
-	display:none;
-	position:absolute; z-index:1000;
-	width:600px; height:100px; line-height:100px;
-	top:50%; left:50%;
-	margin-left:-300px; margin-top:-50px;
-	-webkit-border-radius:10px;
-	background:rgba(0,0,0,0.5);
-	color:#fff;
-	text-align:center;
+
+html {
+	width: 100%;
+	height: 100%;
 }
 
-.ball {
-	position:absolute;
-	top:0; left:0;
-	width:40px;
-	height:40px;
-	-webkit-border-radius:20px;
-	-webkit-box-shadow:2px 2px 6px rgba(0,0,0,0.3);
-	-webkit-transition-property:-webkit-transform;
-	-webkit-transition-timing-function:linear;
-	-webkit-transition-duration:0;
-	-webkit-transform:translate3d(0,0,0);
+.bg-colors {
+	width: 100%;
+	height: 100%;
+	display: block;
 }
 
-.player {
-	z-index:100;
-	background-color:#c30;
-	background-image:-webkit-gradient(radial, 15 15, 0, 15 15, 40, from(rgba(255,60,60,1)), color-stop(0.1, rgba(255,60,60,1)), to(rgba(20,0,0,1)));
+.bg-colors-overlay {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: #FFF;
+	-moz-opacity: 0;
+	opacity: 0;
 }
 
-.opponent {
-	z-index:10;
-	background-color:#ccc;
-	background-image:-webkit-gradient(radial, 15 15, 0, 15 15, 40, from(rgba(250,250,250,1)), color-stop(0.1, rgba(250,250,250,1)), to(rgba(20,20,20,1)));
+.bg-color1 {
+	background-color: #00A0B0;
+}
+
+.bg-color2 {
+	background-color: #6A4A3C;
+}
+
+.bg-color3 {
+	background-color: #CC333F;
+}
+
+.bg-color4 {
+	background-color: #EB6841;
+}
+
+.bg-color5 {
+	background-color: #EDC951;
+}
+
+body p {
+	color: transparent;
 }
