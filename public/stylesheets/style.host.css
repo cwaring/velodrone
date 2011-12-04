@@ -6,3 +6,27 @@ body {
 a {
   color: #00B7FF;
 }
+
+#bars {
+	list-style-type: none;
+	width: 800px;
+	margin: 0;
+	padding: 0;
+}
+
+.bar-container {
+	width: 150px;
+	height: 200px;
+	position: relative;
+}
+
+.bar-container div {
+	width: 40px;
+	height: 100px;
+	display: block;
+	background-color: #CC0000;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 0;
+}
+
