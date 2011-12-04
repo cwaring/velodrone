@@ -25,7 +25,10 @@ app.configure(function(){
 });
 
 app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.use(express.errorHandler());
+  socket.enable('browser client etag');
+  socket.set('log level', 1);
+
   socket.set('transports', [
          'websocket'
          , 'flashsocket'

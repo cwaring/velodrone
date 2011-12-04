@@ -19,8 +19,10 @@ function Player (id, className, x, y, hide_div) {
   that.update(x, y);
 
   if(this.server) {
-    this.cube = new createCube(id, 200, 200);
-    animate();
+    this.cube = new Cube(id, 200, 200);
+    this.cube.createCube();
+    window.setTimeout(this.cube.render, 1000 / 60 );
+    //this.cube.animate();
     this.sound = soundInit('soundID' + mySoundCount, tracks[mySoundCount % tracks.length]);
   }
 }
@@ -35,31 +37,9 @@ Player.prototype = {
   move: function () {
     var that = this, x, y;
 
-    that.vx *= friction;
-    that.vy *= friction;
-    x = that.x + that.vx;
-    y = that.y + that.vy;
+    //console.log(ay);
 
-    if (x > stageW - diameter) {
-      x = stageW - diameter;
-      that.vx *= bounce;
-    } else if (x < 0) {
-      x = 0;
-      that.vx *= bounce;
-    }
-
-    if (y > stageH - diameter) {
-      y = stageH - diameter;
-      that.vy *= bounce;
-    } else if (y < 0) {
-      y = 0;
-      that.vy *= bounce;
-    }
-
-    that.vx += ax;
-      that.vy += ay;
-
-    that.update(x, y);
+    that.update(0, ay);
   },
 
   update: function (x, y) {
@@ -70,7 +50,7 @@ Player.prototype = {
 
    //console.dir(this.sound);
 
-    var new_vol = (y / 660) * 100;
+    var new_vol = (y / 11) * 100;
 
     if(that.server && typeof(that.sound.track) != "undefined") {
       //console.log(new_vol);

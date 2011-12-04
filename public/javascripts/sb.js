@@ -5,7 +5,7 @@ document.addEventListener('touchmove', function (e) { e.preventDefault(); }, fal
 var stage, stageW, stageH,
 	friction = 0.98,
 	bounce = -0.75,
-	sensitivity = 0.8,
+	sensitivity = 0.2,
 	diameter = 40,
 	ax = ay = 0,
 	mainLoop,
@@ -25,9 +25,9 @@ function moveMe () {
 	sendPosition();
 }
 
-window.addEventListener('devicemotion', function (e) {
-	ax = e.accelerationIncludingGravity.x * sensitivity;
-	ay = -e.accelerationIncludingGravity.y * sensitivity;
+window.addEventListener('deviceorientation', function (e) {
+	ax = e.alpha * sensitivity;
+	ay = e.beta * sensitivity;
   //console.log("TEST E " + e.accelerationIncludingGravity.z);
 }, false);
 

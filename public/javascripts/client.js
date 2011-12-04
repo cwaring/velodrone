@@ -14,7 +14,7 @@ if (window.DeviceOrientationEvent) {
 
 function socketInit() {
 
-  socket = new io.connect('/', { port: 8008 });
+  socket = new io.connect('/', { port: 8008, reconnect: false });
 
   socket.on('connect', function () {
     socket.emit('message', { type: 'connect_client' });
@@ -26,6 +26,8 @@ function socketInit() {
 
   socket.on('disconnect', function () {
     document.getElementById('popup').style.display = 'block';
+    socket.disconnect();
+    process.exit();
   });
 }
 
@@ -35,7 +37,7 @@ function sendPosition () {
     buffer.shift();
     socket.emit('message', { type:'position', id:me.id, x:pos.x, y:pos.y });
     $(document).ready(function() {
-      $(".bg-colors-overlay").css("opacity", (pos.y/660));
+      //$(".bg-colors-overlay").css("opacity", (pos.y/660));
     });
     }
 }
@@ -43,5 +45,5 @@ function sendPosition () {
 socketInit();
 
 $(document).ready(function() {
-  $(".bg-colors").addClass("bg-color" + (Math.ceil(Math.random()* 5)+1%5));
+  //$(".bg-colors").addClass("bg-color" + (Math.ceil(Math.random()* 5)+1%5));
 });
