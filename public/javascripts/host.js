@@ -4,7 +4,8 @@ var socket
   , connectTimeout
   , counter
   , cubes = []
-  , players = [];
+  , players = []
+  , player_ids = [];
 
 counter = 0;
 
@@ -30,8 +31,10 @@ function socketInit() {
         break;
       case 'new':
         // New player joined
-        players.push(new Player(message.id, 'opponent', 0, 0, true));
-        animate();
+        if(message.id > 0 && !player_ids[message.id]) {
+          player_ids[message.id] = true;
+          players.push(new Player(message.id, 'opponent', 0, 0, true));
+        }
         break;
       case 'leave':
         // Player disconnected
@@ -54,7 +57,7 @@ function updatePosition (data) {
       players[i].update(data[id].x, data[id].y);
     }
   }
-  console.log(data);
+  //console.log(data);
   //new_size = data[id].y / 660;
 }
 

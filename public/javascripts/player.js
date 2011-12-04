@@ -1,33 +1,38 @@
 function Player (id, className, x, y, hide_div) {
   var that = this,
-    div = document.createElement('div');
-
+  
+  div = document.createElement('div');
+  
   div.id = 'b' + id;
   div.className = 'ball ' + className;
-  hide_div = hide_div || false;
+  this.server = hide_div || false;
 
-  if(!hide_div) {
+  if(!this.server) {
     stage.appendChild(div);
   }
-
+  
   that.id = id;
   that.ball = div;
-
+  
   x = x || 0;
   y = y || 0;
   that.update(x, y);
-
-  if(hide_div) {
-    //this.cube = cubes.push(createCube(id, 200, 200));
+  
+  if(this.server) {
+    this.cube = cubes.push(createCube(id, 200, 200));
+    animate();
+    console.log(mySoundCount);
+    this.sound = soundInit('soundID' + mySoundCount, tracks[0]);
   }
-
 }
 
 Player.prototype = {
   vx: 0,
   vy: 0,
   cube: {},
-
+  server: false,
+  sound: {},
+  
   move: function () {
     var that = this, x, y;
 
@@ -57,15 +62,30 @@ Player.prototype = {
 
     that.update(x, y);
   },
-
+  
   update: function (x, y) {
     var that = this;
     that.x = x;
     that.y = y;
-    that.ball.style.webkitTransform = 'translate3d(' + that.x + 'px,'+ that.y +'px,0)';
+    //that.ball.style.webkitTransform = 'translate3d(' + that.x + 'px,'+ that.y +'px,0)';
+    
+   //console.dir(this.sound);
+    
+    var new_vol = (y / 660) * 100;
+    
+    if(that.server && typeof(that.sound.track) != "undefined") {
+      //console.log(new_vol);
+      that.sound.setVolume(new_vol);
+    }
   },
-
+  
   remove: function () {
-    stage.removeChild(this.ball);
+    if(this.server) {
+      //console.dir(this.sound);
+      this.sound.track.destruct();
+      //that.cube.remove();
+    } else {
+      stage.removeChild(this.ball);
+    }
   }
 }

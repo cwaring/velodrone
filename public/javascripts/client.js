@@ -9,7 +9,7 @@ counter = 0;
 ready = false;
 
 if (window.DeviceOrientationEvent) {
- console.log("DeviceOrientation is supported");
+  console.log("DeviceOrientation is supported");
 } else {
   console.log("GO AWAY YOU CUNT");
 }
@@ -23,7 +23,7 @@ function socketInit() {
     sessionid = socket.socket.sessionid;
     me = new Player(sessionid, 'player');
     ready = true;
-    mainLoop = setInterval(moveMe);
+    mainLoop = setInterval(moveMe, 50);
   });
 
   socket.on('disconnect', function () {
