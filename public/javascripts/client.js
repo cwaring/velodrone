@@ -14,7 +14,7 @@ if (window.DeviceOrientationEvent) {
 
 function socketInit() {
 
-  socket = new io.connect('/', { port: 8008, reconnect: false });
+  socket = new io.connect('/', { port: 80, reconnect: false });
 
   socket.on('connect', function () {
     socket.emit('message', { type: 'connect_client' });

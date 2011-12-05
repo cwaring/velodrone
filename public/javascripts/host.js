@@ -11,7 +11,7 @@ var socket
 counter = 0;
 
 function socketInit() {
-  socket = new io.connect('/', { port: 8008, transports: ['websocket'] });
+  socket = new io.connect('/', { port: 80, transports: ['websocket'] });
 
   socket.on('connect', function () {
     socket.emit('message', { type: 'connect_host' });
@@ -36,9 +36,6 @@ function socketInit() {
           player_ids[message.id] = true;
           players.push(new Player(message.id, 'opponent', 0, 0, true));
         }
-        if(!interval) {
-          interval = setInterval(modCam, 10);
-        };
         break;
       case 'leave':
         // Player disconnected
@@ -52,22 +49,6 @@ function socketInit() {
   });
 }
 
-var radius = 600;
-var theta = 0;
-
-function modCam() {
-
-  theta += 0.2;
-
-  camera.position.x = radius * Math.sin( theta * Math.PI / 360 );
-  camera.position.y = radius * Math.sin( theta * Math.PI / 360 );
-  camera.position.z = radius * Math.cos( theta * Math.PI / 360 );
-  camera.lookAt( scene.position );
-
-  renderer.render( scene, camera );
-
-}
-
 function updatePosition (data) {
   var id, i, l;
 
@@ -77,8 +58,6 @@ function updatePosition (data) {
       players[i].update(data[id].x, data[id].y);
     }
   }
-  //console.log(data);
-  //new_size = data[id].y / 660;
 }
 
 function createOpponents (list) {

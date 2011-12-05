@@ -18,7 +18,28 @@
         renderer = new THREE.CanvasRenderer();
         renderer.setSize( window.innerWidth, window.innerHeight );
         container.appendChild( renderer.domElement );
+        if(!interval) {
+          interval = setInterval(mainRender, 1000 / 60);
+        };
       });
+
+      var radius = 600;
+      var theta = 0;
+
+      function mainRender() {
+
+        // Main render loop
+
+        theta += 0.2;
+
+        camera.position.x = radius * Math.sin( theta * Math.PI / 360 );
+        camera.position.y = radius * Math.sin( theta * Math.PI / 360 );
+        camera.position.z = radius * Math.cos( theta * Math.PI / 360 );
+        camera.lookAt( scene.position );
+
+        renderer.render( scene, camera );
+      }
+
 
       Cube = function(player_id, owidth, oheight) {
         this.cube;
@@ -50,10 +71,10 @@
 
           // Plane
 
-          this.plane = new THREE.Mesh( new THREE.PlaneGeometry( 200, 200 ), new THREE.MeshBasicMaterial( { color: 0xe0e0e0 } ) );
-          this.plane.rotation.x = - 90 * ( Math.PI / 180 );
-          this.plane.overdraw = true;
-          scene.add( this.plane );
+          //this.plane = new THREE.Mesh( new THREE.PlaneGeometry( 200, 200 ), new THREE.MeshBasicMaterial( { color: 0xe0e0e0 } ) );
+          //this.plane.rotation.x = - 90 * ( Math.PI / 180 );
+          //this.plane.overdraw = true;
+          //scene.add( this.plane );
 
           return this.cube;
         }
@@ -70,18 +91,16 @@
 
         this.animate = function() {
 
-          //window.setTimeout( this.animate, 1000 / 60 );
           _this.t =  setTimeout(that.animate,1000 / 60);
 
-          that.render();
+          that.rotate();
         }
 
-        this.render = function() {
+        this.rotate = function() {
 
           this.cube.rotation.x = Math.sin( new Date().getTime() * 0.0007 ) * 0.5;
           this.cube.rotation.y = Math.sin( new Date().getTime() * 0.0003 ) * 0.5;
           this.cube.rotation.z = Math.sin( new Date().getTime() * 0.0002 ) * 0.5;
-          renderer.render( scene, camera );
 
         }
 

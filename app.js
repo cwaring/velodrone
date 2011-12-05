@@ -28,7 +28,6 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
   socket.enable('browser client etag');
-  socket.set('log level', 1);
 
   socket.set('transports', [
          'websocket'
@@ -114,5 +113,5 @@ socket.sockets.on('connection', function (client) {
 
 });
 
-app.listen(8008);
+app.listen(80);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
